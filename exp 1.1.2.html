@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Simple Banking</title>
+
+<style>
+    body {
+        font-family: Arial;
+        background: #f2f2f2;
+        text-align: center;
+    }
+
+    form {
+        width: 400px;
+        margin: 50px auto;
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+        margin-bottom: 30px;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+    }
+
+    button {
+        padding: 12px 30px;
+        font-size: 18px;
+        border: none;
+        color: white;
+        cursor: pointer;
+        margin: 10px;
+        border-radius:15px;
+    }
+
+    button:first-of-type {
+        background: blue;
+    }
+
+    button:last-of-type {
+        background: red;
+    }
+
+    p {
+        color: red;
+        font-size: 18px;
+        display: none;
+    }
+</style>
+</head>
+
+<body>
+
+<form onsubmit="return false;">
+    <h1>Balance: $<span id="balance">1000</span></h1>
+
+    <label>Amount</label><br><br>
+    <input type="number" id="amount">
+
+    <br>
+
+    <button onclick="deposit()">Deposit</button>
+    <button onclick="withdraw()">Withdraw</button>
+
+    <p id="error">Invalid amount!</p>
+</form>
+
+<script>
+    let balance = 1000;
+
+    function deposit() {
+        let amt = document.getElementById("amount").value;
+        amt = Number(amt);
+
+        if (amt <= 0 || isNaN(amt)) {
+            document.getElementById("error").style.display = "block";
+            return;
+        }
+
+        balance += amt;
+        document.getElementById("balance").innerText = balance;
+        document.getElementById("error").style.display = "none";
+        document.getElementById("amount").value = "";
+    }
+
+    function withdraw() {
+        let amt = document.getElementById("amount").value;
+        amt = Number(amt);
+
+        if (amt <= 0 || amt > balance || isNaN(amt)) {
+            document.getElementById("error").style.display = "block";
+            return;
+        }
+
+        balance -= amt;
+        document.getElementById("balance").innerText = balance;
+        document.getElementById("error").style.display = "none";
+        document.getElementById("amount").value = "";
+    }
+</script>
+
+</body>
+</html>
