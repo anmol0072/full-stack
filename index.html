@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Character Counter</title>
+</head>
+
+<body>
+
+<h3>Live Character Counter</h3>
+
+<textarea id="text" rows="5" cols="30" oninput="count()"></textarea>
+<br><br>
+
+<span id="counter">0</span> characters
+
+<script>
+  function count() {
+    var text = document.getElementById("text").value;
+    document.getElementById("counter").innerText = text.length;
+  }
+</script>
+
+</body>
+</html>
